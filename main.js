@@ -285,7 +285,7 @@ function drawScene() {
   gl.uniform1i(shaderProgram.useLightingUniform, true);
 
   // Ambient lighting rgb
-  gl.uniform3f(shaderProgram.ambientColorUniform, 0.2, 0.2, 0.2);
+  gl.uniform3f(shaderProgram.ambientColorUniform, 0.5, 0.5, 0.5);
 
   // Lighting direction xyz
   var lightingDirection = [-0.25, -0.25, -1.0];
