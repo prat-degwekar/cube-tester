@@ -94,6 +94,7 @@ function initTexture(imgTexture) {
     handleLoadedTexture(cs3SquareTexture);
   };
   cs3SquareTexture.image.src = imgTexture;
+  cs3SquareTexture.image.crossOrigin="";
 }
 
 var mvMatrix = mat4.create();
@@ -215,7 +216,7 @@ function initBuffers() {
   cubeVertexNormalBuffer.numItems = 24;
   cubeVertexTextureCoordBuffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, cubeVertexTextureCoordBuffer);
-  var textureCoords = [
+  /* var textureCoords = [
         // Front face
         0.0, 0.0,
         1.0, 0.0,
@@ -246,7 +247,43 @@ function initBuffers() {
         1.0, 0.0,
         1.0, 1.0,
         0.0, 1.0
-  ];
+  ]; */
+  
+    //written in clockwise, next try anticlockwise
+
+	var textureCoords = [
+        // select the bottom left image - clockwise
+        0   , 0  ,
+        0   , 0.5,
+        0.25, 0.5,
+        0.25, 0  ,
+        // select the bottom middle image - anticlockwise
+        0.25, 0  ,
+        0.5 , 0  ,
+        0.5 , 0.5  ,
+        0.25 , 0.5,
+        // select to bottom right image - clockwise
+        0.5 , 0  ,
+        0.5 , 0.5,
+        0.75, 0.5,
+        0.75, 0  ,
+        // select the top left image - anticlockwise
+        0   , 0.5,
+        0.25, 0.5,
+        0.25, 1,
+        0   , 1  ,
+        // select the top middle image - clockwise
+        0.25, 0.5,
+        0.25, 1  ,
+        0.5 , 1  ,
+        0.5 , 0.5,
+        // select the top right image - anticlockwise
+        0.5 , 0.5,
+        0.75, 0.5,
+        0.75, 1,
+        0.5 , 1
+		];
+  
   gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(textureCoords), gl.STATIC_DRAW);
   cubeVertexTextureCoordBuffer.itemSize = 2;
   cubeVertexTextureCoordBuffer.numItems = 24;
